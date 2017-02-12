@@ -40,5 +40,5 @@ testem.log
 Thumbs.db
 
 #dev ignore
-/src/app/config/AppConfig.ts
+\src\app\config\AppConfig.ts
 
