@@ -19,4 +19,4 @@ export const AppConfig: IAppConfig = {
     OAUTH_GET_TOKEN_URI: 'https://oauth.vk.com/access'
   }
 };
-//IGNOREPLIS AAAAAA
+//IGNOREPLIS AAAAAA asasasasass
