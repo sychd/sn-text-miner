@@ -7,7 +7,7 @@ export abstract class HttpRequestsService {
 
   public extractData(res: Response) {
     let body = res.json();
-    return body.response || {};
+    return body.response || body.error || {};
   }
 
   public handleError (error: Response | any) {

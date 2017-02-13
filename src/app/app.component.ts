@@ -14,8 +14,14 @@ export class AppComponent implements OnInit {
 
   }
   public ngOnInit() {
-    if (this.authorizeService.needToRefreshToken) {
-      this.authorizeService.makeTokenRequest();
-    }
+    this.refreshToken();
+  }
+
+  private refreshToken() {
+    setTimeout(() => {
+      if (this.authorizeService.needTokenUpdate) {
+        this.authorizeService.makeTokenRequest();
+      }
+    }, 100);
   }
 }

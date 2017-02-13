@@ -5,7 +5,7 @@ import {HttpModule, JsonpModule} from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {GroupsComponent} from "app/groups/groups.component";
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule} from "@angular/router";
 import {APP_CONFIG, AppConfig} from "./config/AppConfig";
 import {CustomBrowserJsonp} from "./custom-jsonp/custom-browser-jsonp";
 import {BrowserJsonp} from "@angular/http/src/backends/browser_jsonp";
@@ -25,8 +25,7 @@ import {GLOBAL, Global} from "app/global/Global";
     BrowserModule,
     FormsModule,
     HttpModule,
-    JsonpModule,
-    RouterModule
+    JsonpModule
   ],
   providers: [
     { provide: APP_CONFIG, useValue: AppConfig },

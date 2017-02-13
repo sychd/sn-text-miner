@@ -13,7 +13,7 @@ export interface IAppConfig {
     OAUTH_AUTHORIZE_URI: string,
     OAUTH_GET_TOKEN_URI: string
   };
-  global?: {
-    token?: string
+  API: {
+    GROUPS: string;
   }
 }

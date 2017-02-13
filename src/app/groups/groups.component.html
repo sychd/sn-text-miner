@@ -1,6 +1,9 @@
 <h3>Groups component</h3>
 <div>
   <ul>
-    <li *ngFor="let group of groups; let i = index;">{{group | json}} </li>
+    <li *ngFor="let group of groups; let i = index;">{{group.name | json}} </li>
   </ul>
+</div>
+<div>
+  <button (click)="sendGroups()">Send groups to server</button>
 </div>

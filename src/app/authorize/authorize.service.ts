@@ -1,25 +1,15 @@
 import {Injectable, Inject} from "@angular/core";
-import {Http, Response, Jsonp, URLSearchParams} from '@angular/http';
+import {URLSearchParams} from '@angular/http';
 import {APP_CONFIG} from "../config/AppConfig";
 import {IAppConfig} from "../config/IAppConfig";
-import {Observable} from "rxjs";
 
 @Injectable()
 export class AuthorizeService {
-  constructor(private http: Http, private jsonp: Jsonp, @Inject(APP_CONFIG) private config: IAppConfig) {
-  }
+  // for autoupdate set true
+  public needTokenUpdate: boolean = false;
 
   public get tokenlink() {
     return `${this.config.VK.OAUTH_AUTHORIZE_URI}?${this.authorizeParams.toString()}`;
-  }
-
-  public get needToRefreshToken(): boolean {
-    const value = localStorage.getItem('needToRefreshToken');
-    return value == null ? true : JSON.parse(value);
-  }
-
-  public set needToRefreshToken(value: boolean) {
-    localStorage.setItem('needToRefreshToken', value.toString());
   }
 
   public get token(): string {
@@ -31,14 +21,26 @@ export class AuthorizeService {
     localStorage.setItem('token', value);
   }
 
+  constructor(@Inject(APP_CONFIG) private config: IAppConfig) {
+  }
+
   public makeTokenRequest() {
       window.location.href= this.tokenlink;
-      this.needToRefreshToken = false;
+  }
+
+  public updateToken() {
+    this.needTokenUpdate = false;
+    const url = window.location.href;
+    const token = this.resolveToken(url);
+    if (token) {
+      this.token = token;
+    }
   }
 
   public resolveToken(url: string) {
-    return url.match(/access_token=[A-Za-z0-9_]*/g)[0]
-      .replace(/access_token=/g, '');
+    let token: any = url.match(/access_token=[A-Za-z0-9_]*/g);
+    token = token ? token[0] : '';
+    return token.replace(/access_token=/g, '');
   }
 
   private get authorizeParams(): URLSearchParams {
