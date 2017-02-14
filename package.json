@@ -24,6 +24,7 @@
     "body-parser": "^1.16.0",
     "core-js": "^2.4.1",
     "express": "^4.14.1",
+    "node-mysql": "^0.4.2",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
